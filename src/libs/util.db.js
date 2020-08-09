@@ -27,16 +27,13 @@ export default db
 export function pathInit ({
   dbName = 'database',
   path = '',
-  user = true,
   validator = () => true,
   defaultValue = ''
 }) {
-  const uuid = util.cookies.get('uuid') || 'ghost-uuid'
-  const currentPath = `${dbName}.${user ? `user.${uuid}` : 'public'}${path ? `.${path}` : ''}`
+  const currentPath = `${dbName} : 'public'}${path ? `.${path}` : ''}`
   const value = db.get(currentPath).value()
   if (!(value !== undefined && validator(value))) {
-    db
-      .set(currentPath, defaultValue)
+    db.set(currentPath, defaultValue)
       .write()
   }
   return currentPath

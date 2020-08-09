@@ -8,7 +8,7 @@
     <div
       class="page-login--layer page-login--layer-time"
       flex="main:center cross:center">
-      {{time}}
+      {{ time }}
     </div>
     <div class="page-login--layer">
       <div
@@ -113,7 +113,7 @@
         <el-col v-for="(user, index) in users" :key="index" :span="8">
           <div class="page-login--quick-user" @click="handleUserBtnClick(user)">
             <d2-icon name="user-circle-o"/>
-            <span>{{user.name}}</span>
+            <span>{{ user.name }}</span>
           </div>
         </el-col>
       </el-row>
@@ -123,13 +123,14 @@
 
 <script>
 import dayjs from 'dayjs'
-import { mapActions } from 'vuex'
+import {mapActions} from 'vuex'
 import localeMixin from '@/locales/mixin.js'
+
 export default {
   mixins: [
     localeMixin
   ],
-  data () {
+  data() {
     return {
       timeInterval: null,
       time: dayjs().format('HH:mm:ss'),
@@ -184,26 +185,26 @@ export default {
       }
     }
   },
-  mounted () {
+  mounted() {
     this.timeInterval = setInterval(() => {
       this.refreshTime()
     }, 1000)
   },
-  beforeDestroy () {
+  beforeDestroy() {
     clearInterval(this.timeInterval)
   },
   methods: {
     ...mapActions('d2admin/account', [
       'login'
     ]),
-    refreshTime () {
+    refreshTime() {
       this.time = dayjs().format('HH:mm:ss')
     },
     /**
      * @description 接收选择一个用户快速登录的事件
      * @param {Object} user 用户信息
      */
-    handleUserBtnClick (user) {
+    handleUserBtnClick(user) {
       this.formLogin.username = user.username
       this.formLogin.password = user.password
       this.submit()
@@ -212,7 +213,7 @@ export default {
      * @description 提交表单
      */
     // 提交登录信息
-    submit () {
+    submit() {
       this.$refs.loginForm.validate((valid) => {
         if (valid) {
           // 登录
@@ -249,9 +250,11 @@ export default {
     @extend %full;
     overflow: auto;
   }
+
   .page-login--layer-area {
     overflow: hidden;
   }
+
   // 时间
   .page-login--layer-time {
     font-size: 24em;
@@ -259,14 +262,17 @@ export default {
     color: rgba(0, 0, 0, 0.03);
     overflow: hidden;
   }
+
   // 登陆页面控件的容器
   .page-login--content {
     height: 100%;
     min-height: 500px;
   }
+
   // header
   .page-login--content-header {
     padding: 1em 0;
+
     .page-login--content-header-motto {
       margin: 0px;
       padding: 0px;
@@ -275,12 +281,14 @@ export default {
       font-size: 12px;
     }
   }
+
   // main
   .page-login--logo {
     width: 240px;
     margin-bottom: 2em;
     margin-top: -2em;
   }
+
   // 登录表单
   .page-login--form {
     width: 280px;
@@ -288,14 +296,17 @@ export default {
     .el-card {
       margin-bottom: 15px;
     }
+
     // 登录按钮
     .button-login {
       width: 100%;
     }
+
     // 输入框左边的图表区域缩窄
     .el-input-group__prepend {
       padding: 0px 14px;
     }
+
     .login-code {
       height: 40px - 2px;
       display: block;
@@ -303,6 +314,7 @@ export default {
       border-top-right-radius: 2px;
       border-bottom-right-radius: 2px;
     }
+
     // 登陆选项
     .page-login--options {
       margin: 0px;
@@ -312,37 +324,46 @@ export default {
       margin-bottom: 15px;
       font-weight: bold;
     }
+
     .page-login--quick {
       width: 100%;
     }
   }
+
   // 快速选择用户面板
   .page-login--quick-user {
     @extend %flex-center-col;
     padding: 10px 0px;
     border-radius: 4px;
+
     &:hover {
       background-color: $color-bg;
+
       i {
         color: $color-text-normal;
       }
+
       span {
         color: $color-text-normal;
       }
     }
+
     i {
       font-size: 36px;
       color: $color-text-sub;
     }
+
     span {
       font-size: 12px;
       margin-top: 10px;
       color: $color-text-sub;
     }
   }
+
   // footer
   .page-login--content-footer {
     padding: 1em 0;
+
     .page-login--content-footer-locales {
       padding: 0px;
       margin: 0px;
@@ -351,14 +372,17 @@ export default {
       line-height: 12px;
       text-align: center;
       color: $color-text-normal;
+
       a {
         color: $color-text-normal;
         margin: 0 .5em;
+
         &:hover {
           color: $color-text-main;
         }
       }
     }
+
     .page-login--content-footer-copyright {
       padding: 0px;
       margin: 0px;
@@ -367,22 +391,26 @@ export default {
       line-height: 12px;
       text-align: center;
       color: $color-text-normal;
+
       a {
         color: $color-text-normal;
       }
     }
+
     .page-login--content-footer-options {
       padding: 0px;
       margin: 0px;
       font-size: 12px;
       line-height: 12px;
       text-align: center;
+
       a {
         color: $color-text-normal;
         margin: 0 1em;
       }
     }
   }
+
   // 背景
   .circles {
     position: absolute;
@@ -391,8 +419,9 @@ export default {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
+
     li {
       position: absolute;
       display: block;
@@ -403,23 +432,25 @@ export default {
       animation: animate 25s linear infinite;
       bottom: -200px;
       @keyframes animate {
-        0%{
+        0% {
           transform: translateY(0) rotate(0deg);
           opacity: 1;
           border-radius: 0;
         }
-        100%{
+        100% {
           transform: translateY(-1000px) rotate(720deg);
           opacity: 0;
           border-radius: 50%;
         }
       }
+
       &:nth-child(1) {
         left: 15%;
         width: 80px;
         height: 80px;
         animation-delay: 0s;
       }
+
       &:nth-child(2) {
         left: 5%;
         width: 20px;
@@ -427,12 +458,14 @@ export default {
         animation-delay: 2s;
         animation-duration: 12s;
       }
+
       &:nth-child(3) {
         left: 70%;
         width: 20px;
         height: 20px;
         animation-delay: 4s;
       }
+
       &:nth-child(4) {
         left: 40%;
         width: 60px;
@@ -440,24 +473,28 @@ export default {
         animation-delay: 0s;
         animation-duration: 18s;
       }
+
       &:nth-child(5) {
         left: 65%;
         width: 20px;
         height: 20px;
         animation-delay: 0s;
       }
+
       &:nth-child(6) {
         left: 75%;
         width: 150px;
         height: 150px;
         animation-delay: 3s;
       }
+
       &:nth-child(7) {
         left: 35%;
         width: 200px;
         height: 200px;
         animation-delay: 7s;
       }
+
       &:nth-child(8) {
         left: 50%;
         width: 25px;
@@ -465,6 +502,7 @@ export default {
         animation-delay: 15s;
         animation-duration: 45s;
       }
+
       &:nth-child(9) {
         left: 20%;
         width: 15px;
@@ -472,6 +510,7 @@ export default {
         animation-delay: 2s;
         animation-duration: 35s;
       }
+
       &:nth-child(10) {
         left: 85%;
         width: 150px;

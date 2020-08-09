@@ -7,12 +7,15 @@ import { errorLog, errorCreate } from './tools'
 /**
  * @description 创建请求实例
  */
-function createService () {
+function createService() {
   // 创建一个 axios 实例
   const service = axios.create()
   // 请求拦截
   service.interceptors.request.use(
-    config => config,
+    config => {
+      config.headers['Authorization'] = "Bearer " + localStorage.getItem('admin-token');
+      return config;
+    },
     error => {
       // 发送失败
       console.log(error)
@@ -33,7 +36,6 @@ function createService () {
         errorCreate(dataAxios.msg);
       } else {
         errorCreate('请求参数有误');
-        console.log(dataAxios.msg);
       }
     },
     error => {

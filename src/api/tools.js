@@ -79,8 +79,7 @@ export function errorLog (error) {
  * @description 创建一个错误
  * @param {String} msg 错误信息
  */
-export function errorCreate (msg) {
+export function errorCreate(msg) {
   const error = new Error(msg)
   errorLog(error)
-  throw error
 }

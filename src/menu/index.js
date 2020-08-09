@@ -53,7 +53,6 @@ export const menuHeader = supplementPath([
       rbac,
     ],
   },
-
   {
     title: '功能',
     icon: 'puzzle-piece',
