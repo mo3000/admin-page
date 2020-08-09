@@ -1,7 +1,7 @@
 module.exports = {
-  root: true,
+  root: false,
   env: {
-    node: true
+    node: false
   },
   'extends': [
     'plugin:vue/essential',
@@ -21,7 +21,7 @@ module.exports = {
         '**/tests/unit/**/*.spec.{j,t}s?(x)'
       ],
       env: {
-        jest: true
+        jest: false
       }
     }
   ]

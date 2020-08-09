@@ -5,6 +5,7 @@ import plugins from './modules/plugins'
 import charts from './modules/charts'
 import components from './modules/components'
 import business from './modules/business'
+import routerRbac from './modules/router-rbac';
 
 import layoutHeaderAside from '@/layout/header-aside'
 
@@ -62,7 +63,8 @@ const frameIn = [
   plugins,
   charts,
   components,
-  business
+  business,
+  routerRbac,
 ]
 
 /**

@@ -13,14 +13,15 @@ import demoBusiness from './modules/demo-business'
 // CRUD
 import demoD2Crud from './modules/demo-d2-crud'
 // 第三方网页
-import demoFrame from './modules/demo-frame'
+import demoFrame from './modules/demo-frame';
+import rbac from './rbac';
 
 /**
  * @description 给菜单数据补充上 path 字段
  * @description https://github.com/d2-projects/d2-admin/issues/209
  * @param {Array} menu 原始的菜单数据
  */
-function supplementPath (menu) {
+function supplementPath(menu) {
   return menu.map(e => ({
     ...e,
     path: e.path || uniqueId('d2-menu-empty-'),
@@ -38,16 +39,21 @@ export const menuAside = supplementPath([
   demoPlayground,
   demoBusiness,
   demoD2Crud,
-  demoFrame
+  demoFrame,
+  rbac,
 ])
 
 // 菜单 顶栏
 export const menuHeader = supplementPath([
   {
     path: '/index',
-    title: '首页',
-    icon: 'home'
+    title: '后台',
+    icon: 'home',
+    children: [
+      rbac,
+    ],
   },
+
   {
     title: '功能',
     icon: 'puzzle-piece',
@@ -72,5 +78,5 @@ export const menuHeader = supplementPath([
     ]
   },
   demoPlayground,
-  demoBusiness
+  demoBusiness,
 ])
