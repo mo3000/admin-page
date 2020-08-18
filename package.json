@@ -63,12 +63,6 @@
     "babel-eslint": "^10.0.3",
     "compression-webpack-plugin": "^3.0.1",
     "cz-conventional-changelog": "^3.2.0",
-    "eslint": "^6.8.0",
-    "eslint-plugin-import": "^2.22.0",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
-    "eslint-plugin-vue": "^6.2.2",
     "sass": "^1.26.10",
     "sass-loader": "^8.0.0",
     "svg-sprite-loader": "^4.1.6",
@@ -77,14 +71,5 @@
     "vue-template-compiler": "^2.6.10",
     "webpack-bundle-analyzer": "^3.8.0",
     "webpack-theme-color-replacer": "^1.3.14"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/d2-projects/d2-admin.git"
   }
 }

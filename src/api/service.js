@@ -3,6 +3,7 @@ import Adapter from 'axios-mock-adapter'
 import { get } from 'lodash'
 import util from '@/libs/util'
 import { errorLog, errorCreate } from './tools'
+import router from '@/router';
 
 /**
  * @description 创建请求实例
@@ -34,6 +35,7 @@ function createService() {
         return dataAxios.data;
       } else if (code == -1) {
         errorCreate(dataAxios.msg);
+        return Promise.reject();
       } else {
         errorCreate('请求参数有误');
       }
@@ -42,7 +44,12 @@ function createService() {
       const status = get(error, 'response.status')
       switch (status) {
         case 400: error.message = '请求错误'; break
-        case 401: error.message = '未授权，请登录'; break
+        case 401: {
+          error.message = '未授权，请登录';
+          localStorage.removeItem('admin-token');
+          router.replace('/login');
+          break;
+        }
         case 403: error.message = '拒绝访问'; break
         case 404: error.message = `请求地址出错: ${error.response.config.url}`; break
         case 408: error.message = '请求超时'; break
